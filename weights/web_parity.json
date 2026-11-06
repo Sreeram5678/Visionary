@@ -1,0 +1,10 @@
+{
+  "n": 300,
+  "top1_agreement_js_vs_python": 98.0,
+  "js_top1": 93.33,
+  "python_top1_same_images": 93.33,
+  "js_top5": 98.0,
+  "gate_agreement": 99.33,
+  "box_iou_js_vs_python_mean": 0.9657,
+  "js_mean_total_ms_node_1thread": 999.3
+}

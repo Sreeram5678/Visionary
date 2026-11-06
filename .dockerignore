@@ -1,0 +1,11 @@
+.venv
+data
+notebooks
+tests
+docs
+**/__pycache__
+.git
+web/_test
+web/test
+weights/*.pt
+weights/*.jsonl

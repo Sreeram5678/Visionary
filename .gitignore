@@ -1,0 +1,70 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Data and large model checkpoints (download via scripts)
+data/
+datasets/
+*.tar.gz
+*.tgz
+*.zip
+*.pth
+*.engine
+runs/
+
+# IDE & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Streamlit
+.streamlit/secrets.toml
+
+# ---------------- Visionary ----------------
+# Dataset + caches (regenerate with scripts/prepare_data.py / evaluate.py)
+data/
+# Large weights (>100 MB or training-only). The deployable INT8 models are in web/models/.
+weights/*.pt
+!weights/yolov8n.pt
+weights/*.onnx
+# Local test images copied from the dataset
+web/_test/
+node_modules/
+.venv/
+*.log
+

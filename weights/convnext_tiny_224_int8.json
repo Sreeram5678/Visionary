@@ -1,0 +1,6 @@
+{
+  "img_size": 224,
+  "temperature": 0.55,
+  "backbone": "convnext_tiny.fb_in22k_ft_in1k",
+  "params_m": 27.970852
+}

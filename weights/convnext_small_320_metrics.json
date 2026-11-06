@@ -1,0 +1,41 @@
+{
+  "name": "convnext_small_320",
+  "backbone": "convnext_small.fb_in22k_ft_in1k",
+  "img_size": 320,
+  "best_epoch": 15,
+  "temperature": 0.6,
+  "val": {
+    "top1": 96.19289636611938,
+    "top5": 99.61928725242615
+  },
+  "test_gt_crop": {
+    "top1": 94.93843913078308,
+    "top5": 99.40305948257446
+  },
+  "test_full_image": {
+    "top1": 94.08034086227417,
+    "top5": 99.29113388061523
+  },
+  "test_ece_before_T": 16.762252329182274,
+  "test_ece_after_T": 1.9441597180853882,
+  "params_M": 49.605412,
+  "args": {
+    "data": "data/prepared",
+    "backbone": "convnext_small.fb_in22k_ft_in1k",
+    "img": 320,
+    "epochs": 15,
+    "bs": 16,
+    "accum": 2,
+    "lr": 0.0002,
+    "head_lr_mult": 5.0,
+    "wd": 0.05,
+    "smoothing": 0.1,
+    "workers": 3,
+    "name": "convnext_small_320",
+    "out": "weights",
+    "seed": 42,
+    "grad_ckpt": false,
+    "eval_only": false
+  },
+  "file_MB": 94.72799015045166
+}

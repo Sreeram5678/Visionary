@@ -1,0 +1,28 @@
+{
+ "default": "convnext_tiny_224",
+ "models": {
+  "convnext_tiny_224": {
+   "name": "Visionary Lite",
+   "desc": "ConvNeXt-Tiny @224 \u00b7 INT8 \u00b7 fastest",
+   "file": "models/convnext_tiny_224_int8.onnx",
+   "size": 33972056,
+   "imgSize": 224,
+   "temperature": 0.55,
+   "top1": 94.09
+  },
+  "convnext_small_320": {
+   "name": "Visionary Pro",
+   "desc": "ConvNeXt-Small @320 \u00b7 INT8 \u00b7 most accurate",
+   "file": "models/convnext_small_320_int8.onnx",
+   "size": 56977585,
+   "imgSize": 320,
+   "temperature": 0.6,
+   "top1": 94.44
+  }
+ },
+ "assets": {
+  "opencv": 10378215,
+  "wasm": 11210254,
+  "yolo": 12824165
+ }
+}

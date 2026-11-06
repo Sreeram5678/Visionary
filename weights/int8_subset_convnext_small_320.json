@@ -1,0 +1,13 @@
+{
+  "name": "convnext_small_320",
+  "n": 1960,
+  "int8": [
+    94.44,
+    99.44
+  ],
+  "fp32_same_images": [
+    94.44,
+    99.44
+  ],
+  "argmax_agreement": 99.9
+}

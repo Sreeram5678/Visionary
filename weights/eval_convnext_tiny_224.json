@@ -1,0 +1,343 @@
+{
+  "n_test": 8041,
+  "model": "convnext_tiny_224",
+  "params_m": 27.97,
+  "hybrid_weights": {
+    "w_full": 0.0,
+    "w_classical": 0.1,
+    "fusion_t": 1.05
+  },
+  "comparison": [
+    {
+      "name": "Classical only",
+      "top1": 19.02,
+      "top5": 41.49,
+      "latency_ms": 18.5,
+      "size_mb": 2.3
+    },
+    {
+      "name": "Deep learning only",
+      "top1": 92.35,
+      "top5": 98.86,
+      "latency_ms": 70.8,
+      "size_mb": 53.4
+    },
+    {
+      "name": "Hybrid (FP32, ONNX Runtime)",
+      "top1": 93.99,
+      "top5": 99.08,
+      "latency_ms": 206.3,
+      "size_mb": 115.4
+    },
+    {
+      "name": "Hybrid INT8 (ONNX Runtime)",
+      "top1": 93.94,
+      "top5": 99.09,
+      "latency_ms": 138.7,
+      "size_mb": 40.9
+    }
+  ],
+  "ablation": [
+    {
+      "name": "A. Classical only (YOLO ROI + HOG/LBP/HSV + LogReg)",
+      "top1": 19.02,
+      "top5": 41.49,
+      "delta": ""
+    },
+    {
+      "name": "B. Deep learning only (full image)",
+      "top1": 92.35,
+      "top5": 98.86,
+      "delta": ""
+    },
+    {
+      "name": "C. B + adaptive CLAHE gate",
+      "top1": 92.29,
+      "top5": 98.83,
+      "delta": "-0.06"
+    },
+    {
+      "name": "D. YOLO ROI crop + deep learning",
+      "top1": 94.01,
+      "top5": 99.09,
+      "delta": "+1.72"
+    },
+    {
+      "name": "E. D + horizontal-flip TTA",
+      "top1": 94.17,
+      "top5": 99.09,
+      "delta": "+0.16"
+    },
+    {
+      "name": "F. E + full-frame context fusion",
+      "top1": 94.17,
+      "top5": 99.09,
+      "delta": "+0.00"
+    },
+    {
+      "name": "G. F + adaptive CLAHE gate",
+      "top1": 94.17,
+      "top5": 99.07,
+      "delta": "+0.00"
+    },
+    {
+      "name": "H. G + classical late fusion (full hybrid)",
+      "top1": 93.99,
+      "top5": 99.08,
+      "delta": "-0.18"
+    }
+  ],
+  "upper_bound_gt_crop": [
+    94.01,
+    99.23
+  ],
+  "detection": {
+    "n": 8000,
+    "mean_iou": 0.9302,
+    "median_iou": 0.9522,
+    "iou_ge_0.5": 98.76,
+    "recall": 99.03,
+    "map50": 0.7769,
+    "map50_95": 0.7128
+  },
+  "int8": {
+    "top1": 93.94,
+    "top5": 99.09,
+    "size_mb": 32.4
+  },
+  "latency": {
+    "threads": 2,
+    "n_images": 40,
+    "dl_only": {
+      "detection_ms": 0.0,
+      "classical_ms": 1.1,
+      "classifier_ms": 69.8,
+      "total_ms": 70.8,
+      "p90_ms": 77.4
+    },
+    "torch_fp32": {
+      "detection_ms": 11.4,
+      "classical_ms": 0.9,
+      "classifier_ms": 134.1,
+      "classical_head_ms": 16.2,
+      "total_ms": 165.6,
+      "p90_ms": 188.4
+    },
+    "fp32": {
+      "detection_ms": 62.0,
+      "classical_ms": 0.9,
+      "classifier_ms": 127.1,
+      "classical_head_ms": 16.1,
+      "total_ms": 206.3,
+      "p90_ms": 211.3
+    },
+    "int8": {
+      "detection_ms": 53.2,
+      "classical_ms": 0.9,
+      "classifier_ms": 66.7,
+      "classical_head_ms": 16.4,
+      "total_ms": 138.7,
+      "p90_ms": 149.5
+    },
+    "classical_ms": 18.5
+  },
+  "confidence": {
+    "avg_conf_all": 94.96,
+    "avg_conf_correct": 96.47,
+    "avg_conf_wrong": 71.34,
+    "low_conf_rate": 2.44,
+    "acc_when_flagged": 46.94,
+    "acc_when_confident": 95.17,
+    "ece_hybrid": 1.79,
+    "temperature": 0.55,
+    "sweep": [
+      {
+        "threshold": 0.3,
+        "coverage": 99.39,
+        "accuracy_on_accepted": 94.33
+      },
+      {
+        "threshold": 0.4,
+        "coverage": 98.57,
+        "accuracy_on_accepted": 94.79
+      },
+      {
+        "threshold": 0.5,
+        "coverage": 97.56,
+        "accuracy_on_accepted": 95.17
+      },
+      {
+        "threshold": 0.6,
+        "coverage": 95.86,
+        "accuracy_on_accepted": 95.8
+      },
+      {
+        "threshold": 0.7,
+        "coverage": 93.86,
+        "accuracy_on_accepted": 96.5
+      },
+      {
+        "threshold": 0.8,
+        "coverage": 91.28,
+        "accuracy_on_accepted": 97.15
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 87.1,
+        "accuracy_on_accepted": 97.69
+      }
+    ]
+  },
+  "robustness": {
+    "methods": [
+      "Classical",
+      "DL only",
+      "Hybrid",
+      "Detect %"
+    ],
+    "rows": [
+      {
+        "condition": "clean",
+        "values": [
+          17.65,
+          92.35,
+          93.27,
+          99.0
+        ]
+      },
+      {
+        "condition": "low light",
+        "values": [
+          6.02,
+          86.73,
+          87.65,
+          89.0
+        ]
+      },
+      {
+        "condition": "over exposure",
+        "values": [
+          10.1,
+          88.37,
+          90.71,
+          96.3
+        ]
+      },
+      {
+        "condition": "motion blur",
+        "values": [
+          10.92,
+          84.69,
+          88.06,
+          97.9
+        ]
+      },
+      {
+        "condition": "gaussian noise",
+        "values": [
+          9.18,
+          88.88,
+          90.71,
+          86.8
+        ]
+      },
+      {
+        "condition": "occlusion",
+        "values": [
+          3.98,
+          82.55,
+          83.88,
+          98.4
+        ]
+      },
+      {
+        "condition": "viewpoint",
+        "values": [
+          17.14,
+          90.31,
+          92.86,
+          98.8
+        ]
+      },
+      {
+        "condition": "low resolution",
+        "values": [
+          9.29,
+          66.53,
+          64.49,
+          89.6
+        ]
+      }
+    ],
+    "n": 980
+  },
+  "failures": {
+    "top_confusions": {
+      "Audi TTS Coupe 2012 -> Audi TT Hatchback 2011": 13,
+      "Chevrolet Express Van 2007 -> Chevrolet Express Cargo Van 2007": 12,
+      "Audi S5 Coupe 2012 -> Audi A5 Coupe 2012": 12,
+      "Bentley Continental GT Coupe 2012 -> Bentley Continental GT Coupe 2007": 11,
+      "Audi V8 Sedan 1994 -> Audi 100 Sedan 1994": 11,
+      "BMW 6 Series Convertible 2007 -> BMW M6 Convertible 2010": 10,
+      "Dodge Caliber Wagon 2012 -> Dodge Caliber Wagon 2007": 9,
+      "Suzuki SX4 Sedan 2012 -> Suzuki Aerio Sedan 2007": 9,
+      "Audi TT Hatchback 2011 -> Audi TTS Coupe 2012": 9,
+      "Chevrolet Express Cargo Van 2007 -> Chevrolet Express Van 2007": 8
+    },
+    "worst_classes": {
+      "Chevrolet Express Van 2007": 48.6,
+      "Chevrolet Express Cargo Van 2007": 58.6,
+      "Audi TTS Coupe 2012": 64.3,
+      "Audi TT Hatchback 2011": 67.5,
+      "Bentley Continental GT Coupe 2012": 67.6,
+      "Audi S5 Coupe 2012": 71.4,
+      "Chevrolet Silverado 2500HD Regular Cab 2012": 73.7,
+      "Audi V8 Sedan 1994": 74.4
+    },
+    "n_errors": 483,
+    "high_conf_examples": [
+      {
+        "path": "images/test/test_00032.jpg",
+        "true": "Toyota Corolla Sedan 2012",
+        "pred": "Toyota Camry Sedan 2012",
+        "conf": 100.0,
+        "iou": 0.86
+      },
+      {
+        "path": "images/test/test_01275.jpg",
+        "true": "Ferrari 458 Italia Coupe 2012",
+        "pred": "Ferrari 458 Italia Convertible 2012",
+        "conf": 100.0,
+        "iou": 0.944
+      },
+      {
+        "path": "images/test/test_07585.jpg",
+        "true": "Chevrolet Silverado 1500 Regular Cab 2012",
+        "pred": "Chevrolet Silverado 2500HD Regular Cab 2012",
+        "conf": 100.0,
+        "iou": 0.973
+      },
+      {
+        "path": "images/test/test_02541.jpg",
+        "true": "BMW 6 Series Convertible 2007",
+        "pred": "BMW M6 Convertible 2010",
+        "conf": 100.0,
+        "iou": 0.97
+      },
+      {
+        "path": "images/test/test_05220.jpg",
+        "true": "Dodge Durango SUV 2007",
+        "pred": "Chrysler Aspen SUV 2009",
+        "conf": 100.0,
+        "iou": 0.921
+      },
+      {
+        "path": "images/test/test_01999.jpg",
+        "true": "Bentley Continental GT Coupe 2012",
+        "pred": "Bentley Continental GT Coupe 2007",
+        "conf": 100.0,
+        "iou": 0.946
+      }
+    ]
+  }
+}

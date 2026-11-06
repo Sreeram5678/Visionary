@@ -1,0 +1,82 @@
+{
+  "default": "convnext_small_320",
+  "hybrid": {
+    "w_full": 0.0,
+    "w_classical": 0,
+    "fusion_t": 1.0
+  },
+  "models": {
+    "convnext_small_320": {
+      "name": "Visionary Pro",
+      "desc": "ConvNeXt-Small @320px \u00b7 full precision",
+      "runtime": "onnx",
+      "file": "convnext_small_320_fp32.onnx",
+      "img_size": 320,
+      "temperature": 0.6,
+      "backbone": "convnext_small.fb_in22k_ft_in1k",
+      "params_m": 49.605412,
+      "hybrid": {
+        "w_full": 0.0,
+        "w_classical": 0,
+        "fusion_t": 1.0
+      },
+      "tier": "full",
+      "top1": 94.73,
+      "latency_ms": 537.8
+    },
+    "convnext_small_320_int8": {
+      "name": "Visionary Pro \u00b7 INT8",
+      "desc": "ConvNeXt-Small @320px \u00b7 INT8 quantised (faster)",
+      "runtime": "onnx",
+      "file": "convnext_small_320_int8.onnx",
+      "img_size": 320,
+      "temperature": 0.6,
+      "backbone": "convnext_small.fb_in22k_ft_in1k",
+      "params_m": 49.605412,
+      "hybrid": {
+        "w_full": 0.0,
+        "w_classical": 0,
+        "fusion_t": 1.0
+      },
+      "tier": "lite",
+      "top1": 94.44,
+      "latency_ms": 287.2
+    },
+    "convnext_tiny_224": {
+      "name": "Visionary Lite",
+      "desc": "ConvNeXt-Tiny @224px \u00b7 full precision",
+      "runtime": "onnx",
+      "file": "convnext_tiny_224_fp32.onnx",
+      "img_size": 224,
+      "temperature": 0.55,
+      "backbone": "convnext_tiny.fb_in22k_ft_in1k",
+      "params_m": 27.970852,
+      "hybrid": {
+        "w_full": 0.0,
+        "w_classical": 0.1,
+        "fusion_t": 1.05
+      },
+      "tier": "full",
+      "top1": 93.99,
+      "latency_ms": 206.3
+    },
+    "convnext_tiny_224_int8": {
+      "name": "Visionary Lite \u00b7 INT8",
+      "desc": "ConvNeXt-Tiny @224px \u00b7 INT8 quantised (faster)",
+      "runtime": "onnx",
+      "file": "convnext_tiny_224_int8.onnx",
+      "img_size": 224,
+      "temperature": 0.55,
+      "backbone": "convnext_tiny.fb_in22k_ft_in1k",
+      "params_m": 27.970852,
+      "hybrid": {
+        "w_full": 0.0,
+        "w_classical": 0.1,
+        "fusion_t": 1.05
+      },
+      "tier": "lite",
+      "top1": 93.94,
+      "latency_ms": 138.7
+    }
+  }
+}

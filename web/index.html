@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visionary</title>
+<meta name="description" content="Fine-grained vehicle recognition (make, model, year; 196 classes) running entirely in your browser.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23c96442'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<!-- Adds COOP/COEP headers via a service worker so WebAssembly can use threads
+     on static hosting (one-time reload on first visit). MIT, coi-serviceworker. -->
+<script src="coi-serviceworker.js"></script>
+<link rel="stylesheet" href="styles.css">
+<script src="vendor/ort.wasm.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="dot"></div><span>Visionary</span></div>
+  <div class="spacer"></div>
+  <button class="iconbtn" id="benchBtn" title="Model comparison">📊 <span class="label">Benchmarks</span></button>
+  <div class="picker">
+    <button id="pickerBtn"><span id="modelName">Loading…</span> ▾</button>
+    <div class="menu" id="menu"></div>
+  </div>
+</header>
+
+<main id="chat">
+  <section class="hero" id="hero">
+    <h1>What car is this?</h1>
+    <p>Upload a photo. Visionary finds the vehicle, then identifies its make, model and year across 196 classes.</p>
+    <div class="samples">
+      <button class="sample" data-pick><b>📷 Upload a photo</b><span>JPG, PNG or WEBP · up to 15 MB</span></button>
+      <button class="sample" id="sampleBtn"><b>🚗 Try a sample</b><span>Unseen test photos, incl. a dark one (CLAHE)</span></button>
+      <button class="sample" id="benchSample"><b>📊 See benchmarks</b><span>Classical vs deep vs hybrid</span></button>
+    </div>
+    <div class="loader" id="loader">
+      <div id="loaderText">Preparing models…</div>
+      <div class="bar"><i id="loaderBar"></i></div>
+    </div>
+    <div class="privacy">🔒 Runs entirely on your device. Photos are never uploaded.</div>
+  </section>
+</main>
+
+<div class="composer">
+  <div class="box" id="drop">
+    <div class="hint" data-pick><b>Attach</b>, drop or paste a car photo…</div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <button class="send" id="sendBtn" data-pick aria-label="Upload image">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
+  <div class="foot">Trained on Stanford Cars (mostly US models up to 2012). Predictions can be wrong; check the alternatives.</div>
+</div>
+
+<div class="overlay" id="overlay"><div class="sheet" id="sheet"></div></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

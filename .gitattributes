@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.wasm binary
+*.onnx binary
+*.pt binary
+*.joblib binary
+*.jpg binary
+*.png binary
+web/vendor/*.js -text
